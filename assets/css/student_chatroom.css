@@ -1,0 +1,946 @@
+:root {
+    --sidebar-bg: #264653;
+    --sidebar-text: #f4e1c6;
+    --main-bg: #FFFFF0;
+    --card-bg: #F5F5DC;
+    --pending: #7a9e7e;
+    --done: #d4a373;
+    --canceled: #4b6c8c;
+    --today: #a89f91;
+    --change-btn: #ca6702;
+    --close-btn: #9b2226;
+}
+
+/* Base Styles */
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--main-bg);
+    overflow-x: hidden;
+}
+
+.sidebar{
+    width: 300px;
+    height: 100vh;
+}
+
+.right-sidebar{
+    width: 250px;
+    height: 100vh;
+}
+
+
+/* Sidebar Common Styles */
+.sidebar, .right-sidebar {
+    min-height: 100vh;
+    background: var(--sidebar-bg);
+    color: white;
+    position: fixed;
+    top: 0;
+    transition: all 0.3s;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.sidebar {
+    left: 0;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+
+.right-sidebar {
+    right: 0;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+.sidebar-content, .right-sidebar-content {
+    padding: 20px;
+    height: auto;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+/* Scrollbars */
+.sidebar::-webkit-scrollbar,
+.right-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.right-sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.right-sidebar::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Left Sidebar Specific */
+.logocontainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#roundlogo {
+    height: 60px;
+    width: 60px;
+}
+
+#title {
+    font-size: 24px;
+}
+
+.sidebar-title {
+    color: var(--sidebar-text);
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+
+
+.createbtn, .nav-btn{
+    color: var(--sidebar-text);
+    padding: 8px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: block;
+    text-decoration: none;
+   
+}
+
+.createbtn{
+    font-weight: bold;
+}
+
+.createbtn:hover, .nav-btn:hover{
+    background: #1b3a42;
+    color: var(--sidebar-text);
+}
+
+#reportbtn {
+    font-weight: bold;
+}
+
+
+
+/* Right Sidebar Specific */
+.profile-section {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.profile-img {
+    width: 100%; /* Make the image take up full width by default */
+    max-width: 100px; /* Set a max width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure image covers the area without distortion */
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid var(--sidebar-text);
+}
+
+
+
+/* Accordion Styling */
+.accordion-button {
+    background-color: var(--sidebar-bg);
+    color: var(--main-bg);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #1b3a42;
+    color: var(--sidebar-text);
+}
+
+.accordion-body {
+    padding: 0;
+    background-color: #1b3a42;
+}
+
+.member-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.member-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    cursor: pointer;
+    color: #FFFFF0;
+}
+
+.member-item:hover {
+    background-color: #264653;
+}
+
+/* Files Section */
+.files-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--sidebar-bg);
+    color: #FFFFF0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    overflow-y: auto;
+}
+
+.files-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    color: #FFFFF0;
+}
+
+.back-icon {
+    background-color: #f08c00;
+    border-radius: 50%;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-text {
+    color: #FFFFF0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.file-tabs {
+    display: flex;
+    gap: 1rem;
+    font-weight: bold;
+}
+
+.file-tabs .tab {
+    background: none;
+    color: #fffff0;
+    border: none;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.file-tabs .active {
+    background-color: #f3f1e6;
+    color: #264653;
+    border-radius: 20px;
+}
+
+.file-item{
+    color: #FFFFF0;
+}
+
+
+/* Gallery Month Headers */
+.gallery-month {
+font-weight: bold;
+margin: 15px 0 8px 0;
+color: var(--sidebar-text);
+font-size: 14px;
+}
+
+/* Image Grid */
+.image-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 8px;
+margin-bottom: 20px;
+}
+
+.image-tile {
+width: 100%;
+aspect-ratio: 1 / 1;
+overflow: hidden;
+border-radius: 8px;
+cursor: pointer;
+}
+
+.image-tile img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.2s;
+}
+
+.hidden {
+display: none;
+}
+
+#imageGallery {
+z-index: 1; /* Make sure it's not lower than other elements */
+position: relative; /* Or absolute if required */
+}
+
+
+.image-tile:hover img {
+transform: scale(1.03);
+}
+
+
+
+.preview-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.9);
+align-items: center;
+justify-content: center;
+z-index: 2000;
+}
+.preview-close {
+position: absolute;
+top: 20px;
+right: 20px;
+background: none;
+border: none;
+color: #fff;
+font-size: 24px;
+cursor: pointer;
+}
+.preview-nav {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background: none;
+border: none;
+color: #fff;
+font-size: 36px;
+padding: 10px;
+cursor: pointer;
+}
+.preview-prev { left: 20px; }
+.preview-next { right: 20px; }
+.preview-content img {
+max-width: 90%;
+max-height: 90vh;
+object-fit: contain;
+}
+
+.preview-content img {
+max-width: 90%;
+max-height: 90%;
+object-fit: contain;
+}
+
+
+
+/* File Grid */
+.file-grid {
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-bottom: 20px;
+}
+
+.file-tile {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px;
+background-color: rgba(255, 255, 255, 0.1);
+border-radius: 6px;
+cursor: pointer;
+}
+
+.file-tile:hover {
+background-color: rgba(255, 255, 255, 0.2);
+}
+
+.file-tile i {
+font-size: 20px;
+color: #f08c00;
+}
+
+.file-download{
+color: #FFFFF0;
+}
+
+/* Link Grid */
+.link-grid {
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-bottom: 20px;
+}
+
+.link-tile {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px;
+background-color: rgba(255, 255, 255, 0.1);
+border-radius: 6px;
+cursor: pointer;
+}
+
+.link-tile:hover {
+background-color: rgba(255, 255, 255, 0.2);
+}
+
+.link-tile i {
+font-size: 20px;
+color: #4dabf7;
+}
+
+.file-preview{
+cursor: pointer;
+}
+
+/* Scrollable Galleries */
+.image-gallery, 
+.files-gallery, 
+.links-gallery {
+max-height: calc(100vh - 150px);
+overflow-y: auto;
+padding-right: 5px;
+}
+
+/* Custom scrollbar */
+.image-gallery::-webkit-scrollbar,
+.files-gallery::-webkit-scrollbar, 
+.links-gallery::-webkit-scrollbar {
+width: 5px;
+}
+
+.image-gallery::-webkit-scrollbar-thumb,
+.files-gallery::-webkit-scrollbar-thumb,
+.links-gallery::-webkit-scrollbar-thumb {
+background-color: rgba(255,255,255,0.3);
+border-radius: 3px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 360px;
+    margin-right: 310px;
+    padding: 20px;
+    transition: all 0.3s;
+    margin-top: 50px;
+}
+
+/* Top Bar Styles */
+.top-bar {
+display: flex;
+align-items: center;
+width: 100%;
+}
+.top-bar-content {
+    display: flex;
+align-items: center;
+width: 100%;
+gap: 10px;
+}
+
+.group-logo {
+    width: 36px;
+height: 36px;
+border-radius: 50%;
+object-fit: cover;
+margin-right: 10px;
+flex-shrink: 0;
+}
+.group-info-container {
+display: flex;
+align-items: center;
+flex-grow: 1;
+min-width: 0; /* Allows text truncation */
+}
+
+.group-info {
+    display: flex;
+flex-direction: column;
+min-width: 0; /* Allows text truncation */
+}
+
+.group-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #264653;
+    line-height: 1;
+}
+.group-name h2 {
+font-size: 16px;
+margin: 0;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.member-count {
+    font-size: 12px;
+color: #264653;
+line-height: 1;
+margin-top: 2px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+/* Chat Container */
+/* Chat Container */
+.chat-container {
+    margin-left: 320px;
+    margin-right: 270px;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 96vh;
+    margin-top: 13px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* Remove overflow-y: auto from here */
+}
+
+/* Chat Header - Make it sticky */
+.chat-header {
+    padding: 15px 20px;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    /* Add these to ensure header stays fixed */
+    flex-shrink: 0;
+}
+
+/* Chat Box - This is where scrolling should happen */
+.chat-box {
+    flex: 1; /* Take up remaining space */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    overflow-y: auto; /* Enable scrolling here */
+    /* Remove justify-content: flex-end as it interferes */
+    /* Add these for proper scrolling behavior */
+    min-height: 0;
+}
+
+.chat-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.chat-message.right {
+    justify-content: flex-end;
+}
+
+.profile-pic {
+     width: 35px;  /* Base size */
+height: 35px; /* Maintain square aspect ratio */
+min-width: 35px; /* Prevent shrinking below this */
+border: 2px solid #2b2b2b;
+border-radius: 50%;
+object-fit: cover; /* Ensures image covers area without distortion */
+flex-shrink: 0; /* Prevents flexbox from shrinking it */
+}
+
+/* Smooth scrolling */
+/* Smooth scrolling behavior */
+.chat-box {
+    scroll-behavior: smooth;
+    overscroll-behavior: contain; /* Prevent scroll bleed */
+}
+
+/* Better scrollbar styling */
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.sender-name {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #2b2b2b;
+}
+
+.message-bubble {
+    max-width: 250px;
+    background-color: #a89f91;
+    color: #000;
+    padding: 15px;
+    border-radius: 25px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.chat-message.right .message-bubble {
+    background-color: #abc4d1;
+    border-top-right-radius: 0;
+}
+
+.chat-message.left .message-bubble {
+    border-top-left-radius: 0;
+}
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    gap: 12px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.chat-input-container {
+    flex: 1;
+    position: relative;
+    min-width: 0;
+}
+
+.chat-input {
+    width: 100%;
+    min-height: 25px;
+    max-height: 120px;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+    resize: none;
+    overflow-y: auto;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.attach-btn, .send-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.attach-btn:hover, .send-btn:hover {
+    background-color: #f2f2f2;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+    background: var(--sidebar-bg);
+color: white;
+border: none;
+border-radius: 5px;
+padding: 8px 12px;
+display: none;
+z-index: 1100;
+font-size: 20px;
+flex-shrink: 0;
+}
+
+#leftMenuBtn {
+    left: 10px;
+    top: 10px;
+}
+
+#rightMenuBtn {
+    right: 10px;
+    top: 10px;
+}
+
+   /* Adjust chat container margins when sidebars are open */
+.sidebar.active ~ .chat-container,
+.right-sidebar.active ~ .chat-container {
+margin-left: 0;
+margin-right: 0;
+}
+
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1199.98px) {
+    .chat-container {
+        margin-left: 250px;
+        margin-right: 200px;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar, .right-sidebar {
+        transform: translateX(-100%);
+        height: calc(100vh - 60px);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .right-sidebar {
+        transform: translateX(100%);
+    }
+    
+    .right-sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content, .chat-container {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 15px;
+    }
+    
+    .chat-container {
+        height: calc(100vh - 70px);
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+        top: 10px;
+        background: transparent;
+        color: var(--sidebar-bg);
+        border: none;
+        font-size: 20px;
+        padding: 8px 12px;
+        z-index: 1100;
+        display: flex;
+align-items: center;
+justify-content: center;
+    }
+    #leftMenuBtn {
+margin-right: 5px;
+}
+
+#rightMenuBtn {
+margin-left: 5px;
+}
+}
+
+@media (max-width: 767.98px) {
+    .chat-box {
+        padding: 10px;
+        gap: 15px;
+    }
+    
+    .message-bubble {
+        max-width: 80%;
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .chat-input-area {
+        padding: 10px 15px;
+    }
+    
+    .chat-input {
+        padding: 10px 15px;
+    }
+    .profile-img{
+        max-width: 80%; /* Adjust image to 80% of its container width */
+        width: 80%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .chat-input-area {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+    
+    .attach-btn, .send-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .message-bubble {
+        max-width: 75%;
+    }
+    
+    .profile-pic {
+        width: 30px;
+        height: 30px;
+    }
+}
+@media (max-width: 576px) {
+.group-name h2 {
+font-size: 14px;
+}
+
+.member-count {
+font-size: 11px;
+}
+
+.mobile-menu-btn {
+padding: 6px 10px;
+font-size: 18px;
+}
+
+.group-logo {
+width: 30px;
+height: 30px;
+}
+}
+@media (max-width: 480px) {
+.profile-img {
+max-width: 90%; /* Adjust image to 90% of its container width on very small screens */
+width: 90%;
+}
+}
+
+/*  */
+
+
+.attachment-image {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Attachments Preview */
+.attachments-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.attachment-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.preview-thumbnail {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.preview-file-icon {
+    font-size: 18px;
+    color: #6c757d;
+}
+
+.preview-file-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-filename {
+    font-size: 13px;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.remove-attachment {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 2px;
+    margin-left: 4px;
+    font-size: 12px;
+}
+
+/* Message Attachments */
+.message-attachments {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+}
+
+.file-icon {
+    font-size: 20px;
+    color: #4dabf7;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.attachment-name {
+    font-size: 14px;
+}
+
+.attachment-image {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-top: 4px;
+}
+
